@@ -19,7 +19,7 @@
 
 ## 下载
 
-到 [Releases](../../releases) 下载 `AudioPivot-音枢-<版本>.exe`，这是便携版单文件程序，双击即可运行，无需安装。
+到 [Releases](https://github.com/FloydKu/sonic-center/releases/latest) 下载 `AudioPivot-<版本>-portable.exe`，这是便携版单文件程序，双击即可运行，无需安装。
 
 - 系统要求：Windows 10 / 11 x64
 - 程序未做代码签名，首次运行时 SmartScreen 可能提示“已保护你的电脑”，点击“更多信息 → 仍要运行”即可。
