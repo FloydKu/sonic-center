@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <!-- MediaDevices 2.0 目标 net8.0-windows7.0，此处保持一致 -->
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>mtp-bridge</AssemblyName>
+    <RootNamespace>MtpBridge</RootNamespace>
+    <!-- 启用 Native AOT 编译，生成单一原生可执行文件，启动快、无运行时依赖 -->
+    <PublishAot>true</PublishAot>
+    <!-- AOT 推荐设置：使用不变全球化模式，避免 ICU 依赖 -->
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      MediaDevices 2.0 以 generated COM + LibraryImport 重写，标记 IsAotCompatible=true。
+      1.x 使用经典 COM 互操作 (Activator.CreateInstance / dynamic)，不兼容 Native AOT。
+    -->
+    <PackageReference Include="MediaDevices" Version="2.0.0-preview.3.3000" />
+  </ItemGroup>
+
+</Project>

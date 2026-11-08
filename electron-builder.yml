@@ -1,0 +1,36 @@
+# electron-builder 打包配置 —— portable 单文件 exe（双击直接运行）
+appId: com.audiopivot.app
+productName: AudioPivot
+
+directories:
+  output: release
+  buildResources: build
+
+# 只打包运行所需产物，依赖由 electron-builder 自动按 package.json 收集
+files:
+  - dist/**/*
+  - package.json
+
+# 原生模块必须解出 asar 才能被 require 加载
+asar: true
+asarUnpack:
+  - node_modules/better-sqlite3/**
+
+# C# Native AOT 桥接器放到 resources 根（对应 mtpService 的
+# process.resourcesPath/mtp-bridge/mtp-bridge.exe 路径）
+extraResources:
+  - from: build/icon.png
+    to: icon.png
+  - from: resources/mtp-bridge
+    to: mtp-bridge
+    filter:
+      - '**/*'
+      - '!*.pdb'  # 调试符号文件无需打包，减小体积
+
+win:
+  icon: build/icon.png
+  artifactName: AudioPivot-音枢-${version}.exe
+  target:
+    - target: portable
+      arch:
+        - x64
